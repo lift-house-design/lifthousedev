@@ -23,7 +23,7 @@
 			About Us
 		</a>
 		<a href="/news" class="dark">
-			News &amp; Events
+			News &amp; Events 
 		</a>
 		<a href="/contact" class="dark">
 			Contact Us
