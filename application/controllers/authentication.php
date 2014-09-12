@@ -59,7 +59,7 @@ class Authentication extends App_Controller
 			return;
 
 		$post = $this->input->post();
-		
+
 		if($post['password'] !== $post['confirm'])
 			$this->errors[] = 'Passwords do not match.';
 		elseif(empty($post['password']))
@@ -70,7 +70,7 @@ class Authentication extends App_Controller
 		$this->db
 			->where('id', $this->user->data['id'])
 			->update(
-				'user', 
+				'user',
 				array(
 					'password' => sha1($post['password']),
 					'status' => 'ok'
@@ -102,7 +102,7 @@ class Authentication extends App_Controller
 	}
 
 	public function log_out()
-	{	
+	{
 		$this->user->log_out();
 		redirect('/');
 	}

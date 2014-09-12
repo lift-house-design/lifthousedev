@@ -40,11 +40,13 @@
 
 $route['default_controller'] = "site";
 $route['404_override'] = 'site/index';
-$route['sitemap.xml'] = 'site/sitemap_xml'; 
-$route['robots.txt'] = 'site/robots'; 
-$route['sitemap'] = 'site/sitemap'; 
-$route['contact'] = 'site/contact'; 
-$route['about'] = 'site/content/about';
+$route['sitemap.xml'] = 'site/sitemap_xml';
+$route['robots.txt'] = 'site/robots';
+//$route['sitemap'] = 'site/sitemap';
+$route['contact'] = 'site/contact';
+$route['signup'] = 'site/signup';
+$route['about'] = 'site/about';
+$route['news'] = 'site/news';
 $route['claim/(:num)'] = 'claim/page_$1';
 $route['report/(:num)'] = 'report/page_$1';
 $route['report/(:num)/(:any)'] = 'report/page_$1/$2';
@@ -59,10 +61,10 @@ $route['d/(:any)'] = 'dispatcher/view/$1';
 $route['captcha/(:any)/(:any)/(:any)'] = 'site/captcha/$1/$2';
 
 //google site verification
-$route['google5e254cb94de4ecbd.html'] = 'site/google_verification'; 
+$route['google5e254cb94de4ecbd.html'] = 'site/google_verification';
 
 // image generator
-//$route['image/((?!\.png).*)\.png'] = 'site/image/$1'; 
+//$route['image/((?!\.png).*)\.png'] = 'site/image/$1';
 
 // (:any) example
 //$route['search/(:any)'] = 'site/search/$1';

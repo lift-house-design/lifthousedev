@@ -11,22 +11,22 @@ class Site extends App_Controller
 		$this->asides['footer'] = 'footer';
 		$this->asides['notifications'] = 'notifications';
 		$this->asides['seo'] = 'seo';
-		
+
 		//$this->less_css[] = 'application.less';
-	}		
+	}
 
 	/* Ad hoc pages */
 
 	public function index()
-	{	
+	{
 		$this->authenticate = false;
-		$this->asides['banner'] = 'banner';	
-		$this->asides['home_text'] = 'home_text';	
+		$this->asides['banner'] = 'banner';
+		$this->asides['home_text'] = 'home_text';
 
 		$this->min_js[] = '/plugins/slick/slick/slick.min.js';
 		array_unshift($this->min_css, '/plugins/slick/slick/slick.css');
 	}
-	
+
 	/* * * * * * * * * * * * * * * * * * *
 	 * Some cool functions worth saving. *
 	 * * * * * * * * * * * * * * * * * * */
@@ -42,7 +42,7 @@ class Site extends App_Controller
 	public function robots()
 	{
 		$this->view = false;
-		header("Content-type: text/plain; charset=utf-8"); 
+		header("Content-type: text/plain; charset=utf-8");
 		echo "Sitemap: " . $this->config->item('base_path') . "/sitemap.xml";
 
 		// Do not index sites in development
@@ -85,9 +85,9 @@ class Site extends App_Controller
 				'changefreq' => 'daily',
 				'priority' => 1
 			);
-		
+
 */
-		header("Content-type: text/xml; charset=utf-8"); 
+		header("Content-type: text/xml; charset=utf-8");
 		echo $this->xml->get_sitemap($urls);
 	}
 	/* human readable sitemap */
@@ -138,11 +138,25 @@ class Site extends App_Controller
 		$this->data['urls'] = $urls;
 	}
 
+	public function signup()
+	{
+
+	}
+
+	public function news()
+	{
+
+	}
+
+	public function about()
+	{
+
+	}
 
 	public function contact()
 	{
 		config_merge('meta',array(
-			'title' => 'Contact a Representative | Instant Underwriter',
+			'title' => 'Contact a Representative | RISKPIX',
 			'description' => 'Find out more about our custom underwriting solutions.'
 		));
 	//	$this->data['body_class'] = 'bg5';
@@ -205,7 +219,7 @@ class Site extends App_Controller
 		$message = '';
 		foreach($post as $i => $p)
 			$message .= $this->valid->label($i) . ": $p <br/>";
-		
+
 		$what = send_email(
 			'Message from '.$post['name'],
 			$message,
@@ -221,7 +235,7 @@ class Site extends App_Controller
 	/* write some text on an image (from slang.org) */
 	public function image($word)
 	{
-		
+
 		$this->view = false;
 		/*
 		$word = urldecode($word);
@@ -274,7 +288,7 @@ class Site extends App_Controller
 		$this->view = false;
 		$this->captcha->out(
 			$this->captcha->get_word(),
-			intval($w), 
+			intval($w),
 			intval($h)
 		);
 	}

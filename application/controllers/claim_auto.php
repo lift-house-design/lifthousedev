@@ -56,7 +56,7 @@ class Claim extends App_Controller
 		}
 
 		$post = $this->input->post();
-			
+
 		$this->models[] = 'claim';
 		$this->load->library('valid');
 		$err = $this->valid->validate(
@@ -126,7 +126,7 @@ class Claim extends App_Controller
 				isset($c['insurer_name']) ? $c['insurer_name'] : '',
 				$c['claim_number'],
 				$c['status'],
-				$c['name'],				
+				$c['name'],
 				$c['phone'] && $c['email'] ? $c['phone']."<br/>".$c['email'] : $c['email'].$c['phone'],
 				//$c['vin'].'<br/>'.$c['year'].' '.$c['model'].'<br/>'.$c['make'].'<br/>'.$c['body'],
 				'<input type="button" onclick="claim_view(\''.$c['hash'].'\')" value="View"/><br/>'.
@@ -163,7 +163,7 @@ class Claim extends App_Controller
 			return;
 
 		$post = $this->input->post();
-			
+
 		$this->models[] = 'claim';
 		$this->load->library('valid');
 		$err = $this->valid->validate(
@@ -242,8 +242,8 @@ class Claim extends App_Controller
 		send_email(
 			'Your [Insurance Company] Damage Report',
 			"Hello {$claim['name']},<br/><br/>
-			
-			Thank you for agreeing to process your damage claim using InstantUnderwriter.com. Follow the link below to send photos of your damaged vehicle, and we will expedite the processing your claim. If you have any questions please email us at or call us at 800-XXX-XXXX<br/><br/>
+
+			Thank you for agreeing to process your damage claim using RISKPIX.com. Follow the link below to send photos of your damaged vehicle, and we will expedite the processing your claim. If you have any questions please email us at or call us at 800-XXX-XXXX<br/><br/>
 			<a href=\"$report_url\">$report_url</a><br/><br/>Please visit this site from a mobile device with built-in camera.",
 			$claim['email']
 		);
@@ -276,7 +276,7 @@ class Claim extends App_Controller
 				echo date('Y-m-d H:i:s')."\tExpired Claim ID {$c['id']}\n";
 				continue;
 			}
-			
+
 			// send
 			$c['resend_count'] = intval($c['resend_count']) + 1;
 			if($c['email'])
@@ -292,7 +292,7 @@ class Claim extends App_Controller
 
 			$this->db->where('id', $c['id'])
 				->update(
-					'claims', 
+					'claims',
 					array(
 						'resend_count' => $c['resend_count'],
 						'next_resend' => date('Y-m-d H:i:s', time()+86400)

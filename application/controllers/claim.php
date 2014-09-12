@@ -55,7 +55,7 @@ class Claim extends App_Controller
 		}
 
 		$post = $this->input->post();
-			
+
 		$this->models[] = 'claim';
 		$this->load->library('valid');
 		$err = $this->valid->validate(
@@ -116,7 +116,7 @@ class Claim extends App_Controller
 				date('n/j/y g:ia', strtotime($c['date'])),
 				$c['claim_number'],
 				$c['status'],
-				$c['name'],				
+				$c['name'],
 				$c['phone'] && $c['email'] ? $c['phone']."<br/>".$c['email'] : $c['email'].$c['phone'],
 				//$c['vin'].'<br/>'.$c['year'].' '.$c['model'].'<br/>'.$c['make'].'<br/>'.$c['body'],
 				'<input type="button" onclick="claim_view(\''.$c['hash'].'\')" value="View"/><br/>'.
@@ -234,7 +234,7 @@ class Claim extends App_Controller
 		}
 
 		$post = $this->input->post();
-			
+
 		$this->models[] = 'claim';
 		$this->load->library('valid');
 		$err = $this->valid->validate_lazy(
@@ -310,8 +310,8 @@ class Claim extends App_Controller
 		send_email(
 			'Your Homeowners Insurance Quote',
 			"Hello {$claim['name']},<br/><br/>
-			
-			Thank you for using InstantUnderwriter.com for your Homeowners Insurance quote. Follow the link below to answer questions and send photos of your home so we can expedite the processing of your quote. If you have any questions please email us at or call us at 800-XXX-XXXX<br/><br/>
+
+			Thank you for using RISKPIX.com for your Homeowners Insurance quote. Follow the link below to answer questions and send photos of your home so we can expedite the processing of your quote. If you have any questions please email us at or call us at 800-XXX-XXXX<br/><br/>
 			<a href=\"$report_url\">$report_url</a><br/><br/>Please visit this page from a mobile device with built-in camera.",
 			$claim['email']
 		);
@@ -344,7 +344,7 @@ class Claim extends App_Controller
 				echo date('Y-m-d H:i:s')."\tExpired Quote ID {$c['id']}\n";
 				continue;
 			}
-			
+
 			// send
 			$c['resend_count'] = intval($c['resend_count']) + 1;
 			if($c['email'])
@@ -360,7 +360,7 @@ class Claim extends App_Controller
 
 			$this->db->where('id', $c['id'])
 				->update(
-					'claims', 
+					'claims',
 					array(
 						'resend_count' => $c['resend_count'],
 						'next_resend' => date('Y-m-d H:i:s', time()+86400)

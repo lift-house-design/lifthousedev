@@ -1,7 +1,7 @@
 <div class="align-center">
 	<div class="w300 align-center pull-center pad6 f16">
 		<i><b class="black">
-			Instant Underwriter Quote App
+			RISKPIX Quote App
 		</b></i>
 	</div>
 </div>
@@ -62,11 +62,10 @@ function cookies_enabled()
 	var cookieEnabled = (navigator.cookieEnabled) ? true : false;
 
 	if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled)
-	{ 
+	{
 		document.cookie="testcookie";
 		cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
 	}
 	return (cookieEnabled);
 }
 </script>
-
