@@ -1,4 +1,4 @@
-<div class="spacer30"></div>
+<div class="spacer40"></div>
 <?/*<img src="/assets/img/mobile_logo.png"/>*/?>
 <form action='/authentication/log_in' method="post">
 	<input type="text" name="email" placeholder="email"/><br/>

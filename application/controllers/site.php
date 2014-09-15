@@ -5,6 +5,7 @@ class Site extends App_Controller
 	public function __construct()
 	{
 		$this->models[] = 'log';
+		$this->models[] = 'site';
 		$this->helpers[] = 'config';
 		parent::__construct();
 		$this->asides['topbar'] = 'topbar';
@@ -140,6 +141,132 @@ class Site extends App_Controller
 
 	public function signup()
 	{
+		config_merge('meta',array(
+			'title' => 'Sign Up | RISKPIX',
+			'description' => 'Find out more about our custom underwriting solutions.'
+		));
+
+			$rules = array(
+				array('company', 'required'),
+				array('name', 'required'),
+				array('email', 'required'),
+				array('email', 'email'),
+				array('email2', 'required'),
+				array('email2', 'email'),
+				array('password', 'required'),
+				array('password2', 'required')
+			);
+
+
+		//	$this->data['body_class'] = 'bg5';
+		$this->load->library('valid');
+
+		// did we get some datas?
+		$post = $this->input->post();
+		if(!$post) // nope
+		{
+			$this->valid->fill_empty($this->data, $rules);
+			return;
+		}
+		$err = $this->valid->validate($post, $rules);
+
+		if($err)
+		{
+			$this->errors[] = $err;
+			$this->data = array_merge($this->data, $post);
+			return;
+		}
+
+		$this->valid->make_empty($this->data, $rules);
+		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+		//redirect('/authentication/log_in');
+	}
+
+	public function signup2()
+	{
+		config_merge('meta',array(
+			'title' => 'Sign Up | RISKPIX',
+			'description' => 'Find out more about our custom underwriting solutions.'
+		));
+
+		$rules = array(
+			array('address', 'required'),
+			array('city', 'required'),
+			array('state', 'required'),
+			array('zip', 'email'),
+			array('phone', 'required'),
+			array('phone', 'phone'),
+			array('mobile', 'phone')
+		);
+		//	$this->data['body_class'] = 'bg5';
+		$this->load->library('valid');
+
+		// did we get some datas?
+		$post = $this->input->post();
+		if(!$post) // nope
+		{
+			$this->valid->fill_empty($this->data, $rules);
+			return;
+		}
+		$err = $this->valid->validate($post, $rules);
+
+		if($err)
+		{
+			$this->errors[] = $err;
+			$this->data = array_merge($this->data, $post);
+			return;
+		}
+
+		$this->valid->make_empty($this->data, $rules);
+		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+		//redirect('/authentication/log_in');
+
+	}
+
+	public function signup3()
+	{
+		config_merge('meta',array(
+			'title' => 'Sign Up | RISKPIX',
+			'description' => 'Find out more about our custom underwriting solutions.'
+		));
+
+		$rules = array(
+			array('pricing', 'required')
+		);
+
+		$pricing = array();
+		$rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
+
+		foreach ($rows as $p) {
+			$k = $p['p_ID'];
+			$v = $p['p_volume'] . ' @ $' . number_format($p['p_price'],2) . 'ea. / ($' . number_format($p['p_volume']*$p['p_price'],2) . ')';
+			$pricing[$k] = $v;
+		}
+		//$this->notifications[] = print_r($pricing);
+		$this->data['pricing'] = $pricing;
+
+		//	$this->data['body_class'] = 'bg5';
+		$this->load->library('valid');
+
+		// did we get some datas?
+		$post = $this->input->post();
+		if(!$post) // nope
+		{
+			$this->valid->fill_empty($this->data, $rules);
+			return;
+		}
+		$err = $this->valid->validate($post, $rules);
+
+		if($err)
+		{
+			$this->errors[] = $err;
+			$this->data = array_merge($this->data, $post);
+			return;
+		}
+
+		$this->valid->make_empty($this->data, $rules);
+		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+		//redirect('/authentication/log_in');
 
 	}
 
