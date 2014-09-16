@@ -12,6 +12,7 @@ class Site extends App_Controller
 		$this->asides['footer'] = 'footer';
 		$this->asides['notifications'] = 'notifications';
 		$this->asides['seo'] = 'seo';
+		$this->asides['bottombar'] = 'bottombar';
 
 		//$this->less_css[] = 'application.less';
 	}
@@ -217,6 +218,10 @@ class Site extends App_Controller
 			return;
 		}
 
+		//save data
+
+
+
 		$this->valid->make_empty($this->data, $rules);
 		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
 		//redirect('/authentication/log_in');
@@ -231,8 +236,9 @@ class Site extends App_Controller
 		));
 
 		$rules = array(
-			array('pricing', 'required')
-		);
+			array('pricing', 'required'),
+			array('terms', 'required'),
+			);
 
 		$pricing = array();
 		$rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
@@ -261,6 +267,7 @@ class Site extends App_Controller
 		{
 			$this->errors[] = $err;
 			$this->data = array_merge($this->data, $post);
+			$this->data['pricing'] = $pricing;
 			return;
 		}
 
@@ -270,6 +277,56 @@ class Site extends App_Controller
 
 	}
 
+	public function signuppay()
+	{
+
+		$is_test_transaction = true;
+		$stripe_public_key = 'pk_live_uKzioeuq4V96VGQDFkaEZcKj';
+		$test_stripe_public_key = 'pk_test_kL6fXiWecirqZRc8zNicu0oX';
+		$test_card_number = '4242424242424242';
+		$test_cvc_code = '123';
+		$test_stripe_secret_key = 'sk_test_9YTdExpSIuVADgrueOS2d4VD';
+		$stripe_secret_key = 'sk_live_iQ4yNAvvCwT9vzvsTYSm6WY9';
+
+		$this->data['is_test_transaction'] = $is_test_transaction;
+		$this->data['stripe_public_key'] = $stripe_public_key;
+		$this->data['test_stripe_public_key'] = $test_stripe_public_key;
+		$this->data['test_card_number'] = $test_card_number;
+		$this->data['test_cvc_code'] = $test_cvc_code;
+
+		//----STRIPE----//
+		$this->load->library('stripe');
+		//$this->merchant->load('stripe');
+
+				// Set your secret key: remember to change this to your live secret key in production
+				// See your keys here https://dashboard.stripe.com/account
+				if ($is_test_transaction == true) {
+					Stripe::setApiKey($test_stripe_secret_key);
+				} else {
+					Stripe::setApiKey($stripe_secret_key);
+				}
+
+				// Get the credit card details submitted by the form
+				$token = $_POST['stripeToken'];
+
+				// Create the charge on Stripe's servers - this will charge the user's card
+				try {
+				$charge = Stripe_Charge::create(array(
+				  "amount" => 1000, // amount in cents, again
+				  "currency" => "usd",
+				  "card" => $token,
+				  "description" => "jd@test.com")
+				);
+				} catch(Stripe_CardError $e) {
+				  // The card has been declined
+				}
+
+	}
+
+	public function terms()
+	{
+
+	}
 	public function news()
 	{
 

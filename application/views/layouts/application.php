@@ -76,6 +76,7 @@
 	<?= empty($yield_claim_number) ? '' : $yield_claim_number ?>
 	<?= empty($yield_seo) ? '' : $yield_seo ?>
 	<?= $yield_footer ?>
+  <?= $yield_bottombar ?>
 	<div class="overlay-bg"></div>
 	<div class="overlay-circle">
 		<table><td>checking VIN...</td></table>

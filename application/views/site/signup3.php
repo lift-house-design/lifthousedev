@@ -18,6 +18,10 @@
                   Unused monthly reports expire on: date here.
                 </td>
               </tr>
+              <tr>
+                <td class="align-right" valign="top"></td>
+                <td><input type="checkbox" name="terms"/> I accept the <a href="/terms">terms and conditions</a>.</td>
+              </tr>
           </table>
             <input type="submit" value="Procede to Step 4"/>
         </form>
