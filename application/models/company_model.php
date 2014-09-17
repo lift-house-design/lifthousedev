@@ -13,11 +13,11 @@ class Company_model extends App_Model
 
   public function get_company() {
 
-    $pricing = array();
-    $rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
+    //$pricing = array();
+    //$rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
 
 
-    return $pricing;
+    //return $pricing;
   }
 
 }

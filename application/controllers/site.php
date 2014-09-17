@@ -147,7 +147,7 @@ class Site extends App_Controller
 
 	public function signup()
 	{
-		$this->load->library('session');
+		//$this->load->library('session');
 		config_merge('meta',array(
 			'title' => 'Sign Up | RISKPIX',
 			'description' => 'Find out more about our custom underwriting solutions.'
@@ -208,9 +208,9 @@ class Site extends App_Controller
 	public function signup2()
 	{
 
-		//print_r($this->session->flashdata('cid'));
+		echo($this->session->flashdata('cid'));
 
-		$this->load->library('session');
+		//$this->load->library('session');
 		config_merge('meta',array(
 			'title' => 'Sign Up | RISKPIX',
 			'description' => 'Find out more about our custom underwriting solutions.'
@@ -247,23 +247,25 @@ class Site extends App_Controller
 			//echo $this->session->flashdata('cid');
 
 			//save data
-			$c = $this->company->update($this->session->flashdata('cid'),array(
+			$cid = $this->session->flashdata('cid');
+			$this->company->update($cid,array(
 				'c_address'=>$post['address'],
 				'c_city'=>$post['city'],
 				'c_state'=>$post['state'],
 				'c_zipcode'=>$post['zip'],
 				'c_phone_main'=>$post['phone']
 			));
-			$u = $this->user->update($this->session->flashdata('uid'),array(
+			$uid = $this->session->flashdata('uid');
+			$this->user->update($uid,array(
 				'phone'=>$post['phone'],
 			));
 
 			//$this->valid->make_empty($this->data, $rules);
 			//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
 
-			//print_r($c);
+			echo($cid);
 
-			redirect('/signup3');
+			//redirect('/signup3');
 
 		}
 	}
