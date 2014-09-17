@@ -4,8 +4,9 @@ class Site extends App_Controller
 {
 	public function __construct()
 	{
+		//$this->models[]='pricing';
 		$this->models[] = 'log';
-		$this->models[] = 'site';
+		$this->models[] = 'pricing';
 		$this->helpers[] = 'config';
 		parent::__construct();
 		$this->asides['topbar'] = 'topbar';
@@ -228,6 +229,16 @@ class Site extends App_Controller
 
 	}
 
+/*
+	public function insertpricing()
+	{
+		// http://github.com/jamierumbelow/codeigniter-base-model
+		$this->pricing->insert(array(
+			'p_volume'=>'20',
+			'p_price'=>'20.00',
+		));
+	}
+*/
 	public function signup3()
 	{
 		config_merge('meta',array(
@@ -240,16 +251,17 @@ class Site extends App_Controller
 			array('terms', 'required'),
 			);
 
-		$pricing = array();
+		/*$pricing = array();
 		$rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
 
 		foreach ($rows as $p) {
 			$k = $p['p_ID'];
 			$v = $p['p_volume'] . ' @ $' . number_format($p['p_price'],2) . 'ea. / ($' . number_format($p['p_volume']*$p['p_price'],2) . ')';
 			$pricing[$k] = $v;
-		}
+		}*/
 		//$this->notifications[] = print_r($pricing);
-		$this->data['pricing'] = $pricing;
+		//$this->data['pricing'] = $pricing;
+		$this->data['pricing'] = $this->pricing->get_pricing();
 
 		//	$this->data['body_class'] = 'bg5';
 		$this->load->library('valid');
@@ -295,7 +307,7 @@ class Site extends App_Controller
 		$this->data['test_cvc_code'] = $test_cvc_code;
 
 		//----STRIPE----//
-		$this->load->library('stripe');
+		$this->load->library('stripe_api');
 		//$this->merchant->load('stripe');
 
 				// Set your secret key: remember to change this to your live secret key in production
