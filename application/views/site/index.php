@@ -1,6 +1,8 @@
+
+<!--//
 <a href="/contact" id="contact-footer">Contact Us Today</a>
 <div class="align-center pad40 robotoi">(650) 352-3979</div>
-
+//-->
 
 
 

@@ -1,3 +1,9 @@
+
+<div class="h100">
+  <div class="auto">
+    <div class="contact">
+      <div class="center700">
+
 <div id="terms" class="align-left pad20">
 <h2>Terms of Use</h2>
 <P>
@@ -36,4 +42,9 @@ The formal complaints procedure should only be used where the complainant feels 
 A formal complaint should be made in writing to Lift House, Inc., who will acknowledge receipt and ensure that the matter is looked into as soon as possible.
 <P>
 An initial response to any complaint can be expected within seven days of its receipt; a full and considered response to the complaint should be completed within 30 days and any subsequent remedy implemented with the minimum of delay. Formal complaints not resolved by other means, shall be settled by a mediator appointed by Lift House, Inc. and heard in Austin, Texas, USA.
+</div>
+
+</div>
+</div>
+</div>
 </div>

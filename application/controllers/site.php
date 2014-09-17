@@ -7,6 +7,7 @@ class Site extends App_Controller
 		//$this->models[]='pricing';
 		$this->models[] = 'log';
 		$this->models[] = 'pricing';
+		$this->models[] = 'company';
 		$this->helpers[] = 'config';
 		parent::__construct();
 		$this->asides['topbar'] = 'topbar';
@@ -14,8 +15,11 @@ class Site extends App_Controller
 		$this->asides['notifications'] = 'notifications';
 		$this->asides['seo'] = 'seo';
 		$this->asides['bottombar'] = 'bottombar';
-
+		$this->load->library('session');
 		//$this->less_css[] = 'application.less';
+
+		//$this->uid = 0;
+		//$this->cid = 0;
 	}
 
 	/* Ad hoc pages */
@@ -143,6 +147,7 @@ class Site extends App_Controller
 
 	public function signup()
 	{
+		$this->load->library('session');
 		config_merge('meta',array(
 			'title' => 'Sign Up | RISKPIX',
 			'description' => 'Find out more about our custom underwriting solutions.'
@@ -177,15 +182,35 @@ class Site extends App_Controller
 			$this->errors[] = $err;
 			$this->data = array_merge($this->data, $post);
 			return;
+		} else {
+			//save data
+			$this->cid = $this->company->insert(array(
+						'c_name'=>$post['company']
+					));
+			$this->session->set_flashdata('cid', $this->cid);
+			$this->uid = $this->user->insert(array(
+				'email'=>$post['email'],
+				'password'=>$post['password'],
+			));
+			$this->session->set_flashdata('uid', $this->uid);
+
+			//$this->valid->make_empty($this->data, $rules);
+			//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+
+			redirect('/signup2');
+
+			//print_r($this->uid);
+
 		}
 
-		$this->valid->make_empty($this->data, $rules);
-		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
-		//redirect('/authentication/log_in');
 	}
 
 	public function signup2()
 	{
+
+		//print_r($this->session->flashdata('cid'));
+
+		$this->load->library('session');
 		config_merge('meta',array(
 			'title' => 'Sign Up | RISKPIX',
 			'description' => 'Find out more about our custom underwriting solutions.'
@@ -195,7 +220,7 @@ class Site extends App_Controller
 			array('address', 'required'),
 			array('city', 'required'),
 			array('state', 'required'),
-			array('zip', 'email'),
+			array('zip', 'required'),
 			array('phone', 'required'),
 			array('phone', 'phone'),
 			array('mobile', 'phone')
@@ -217,16 +242,30 @@ class Site extends App_Controller
 			$this->errors[] = $err;
 			$this->data = array_merge($this->data, $post);
 			return;
+		} else {
+
+			//echo $this->session->flashdata('cid');
+
+			//save data
+			$c = $this->company->update($this->session->flashdata('cid'),array(
+				'c_address'=>$post['address'],
+				'c_city'=>$post['city'],
+				'c_state'=>$post['state'],
+				'c_zipcode'=>$post['zip'],
+				'c_phone_main'=>$post['phone']
+			));
+			$u = $this->user->update($this->session->flashdata('uid'),array(
+				'phone'=>$post['phone'],
+			));
+
+			//$this->valid->make_empty($this->data, $rules);
+			//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+
+			//print_r($c);
+
+			redirect('/signup3');
+
 		}
-
-		//save data
-
-
-
-		$this->valid->make_empty($this->data, $rules);
-		//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
-		//redirect('/authentication/log_in');
-
 	}
 
 /*
@@ -251,16 +290,6 @@ class Site extends App_Controller
 			array('terms', 'required'),
 			);
 
-		/*$pricing = array();
-		$rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
-
-		foreach ($rows as $p) {
-			$k = $p['p_ID'];
-			$v = $p['p_volume'] . ' @ $' . number_format($p['p_price'],2) . 'ea. / ($' . number_format($p['p_volume']*$p['p_price'],2) . ')';
-			$pricing[$k] = $v;
-		}*/
-		//$this->notifications[] = print_r($pricing);
-		//$this->data['pricing'] = $pricing;
 		$this->data['pricing'] = $this->pricing->get_pricing();
 
 		//	$this->data['body_class'] = 'bg5';
@@ -281,6 +310,27 @@ class Site extends App_Controller
 			$this->data = array_merge($this->data, $post);
 			$this->data['pricing'] = $pricing;
 			return;
+		} else {
+
+			//save data
+			/*
+			$this->company->update(1,array(
+				'c_address'=>$post['address'],
+				'c_city'=>$post['city'],
+				'c_state'=>$post['state'],
+				'c_zipcode'=>$post['zip'],
+				'c_phone_main'=>$post['phone']
+			));
+			$this->user->update(42,array(
+				'phone'=>$post['phone'],
+			));
+			*/
+
+			$this->valid->make_empty($this->data, $rules);
+			//$this->notifications[] = 'Your message has been received! You will be contacted shortly.';
+
+			redirect('/signuppay');
+
 		}
 
 		$this->valid->make_empty($this->data, $rules);

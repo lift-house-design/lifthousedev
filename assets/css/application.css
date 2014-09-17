@@ -745,6 +745,10 @@ a#contact-footer {
   margin: 0 auto;
   max-width: 540px;
 }
+.center700 {
+  margin: 0 auto;
+  max-width: 700px;
+}
 * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -1050,19 +1054,22 @@ img.logo-mobile {
 }
 #bottombar {
   font-size: 1.0em;
-  height: 180px;
+  height: 200px;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   line-height: 0px !important;
-  position: fixed;
-  bottom: 0px;
+  position: absolute;
+  bottom: -50px;
   left: 0px;
-  z-index: 999999;
   width: 100%;
   min-width: 320px;
-  background: #333132;
-  background: rgba(0, 0, 0, 0.8);
+  min-height: 180px;
+  max-height: 180px;
+  background-color: #343434;
+  overflow-y: hidden;
+  width: 100%;
+  border-top: 3px solid #40c1c4;
+  padding-top: 10px;
 }
 /*
 #bottombar a:hover {
@@ -1101,10 +1108,11 @@ img.logo-mobile {
   min-width: 320px;
   background: #333132;
   background: rgba(0, 0, 0, 0.8);
+  border-bottom: 3px solid #40c1c4;
 }
 @media all and (max-width: 480px) {
   #topbar {
-    font-size: 1.8em;
+    font-size: 1.5em;
   }
   #topbar a:nth-child(2) {
     width: 75px;
@@ -1123,6 +1131,7 @@ img.logo-mobile {
   border-top: 1px solid #000000;
   font-family: 'Roboto';
   padding: 30px 10px;
+  font-size: 70%;
 }
 #topbar a:hover {
   background: #000000;
@@ -1138,7 +1147,6 @@ img.logo-mobile {
   font-family: 'Roboto';
   float: right;
   display: block;
-  font-size: 70%;
   height: 60px;
   padding: 30px 10px;
 }
@@ -1155,7 +1163,7 @@ img.logo-mobile {
   float: right;
   text-align: right;
   display: block;
-  font-size: 70%;
+  font-size: 50%;
   height: 60px;
   padding: 30px 10px;
   width: 100px;
@@ -1468,4 +1476,23 @@ textarea.placeholder {
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button {
   width: 100%;
   overflow: visible;
+}
+.border-teal {
+  border: 2px solid #40c1c4;
+}
+.mainlogo {
+  font-family: 'Helvetica Neue';
+  font-size: 40px;
+}
+#bottomright {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-top: 7px;
+}
+#bottomleft {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding-top: 7px;
 }

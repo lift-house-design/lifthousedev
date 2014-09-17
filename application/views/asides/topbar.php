@@ -1,7 +1,7 @@
 <div id="topbar">
 	<a href="javascript:toggle_menu()">
 		<span>&#9776; <b>Menu</b></span>
-		<b>RISK</b>PIX
+		<f class="mainlogo"><b>RISK</b>PIX</f>
 	</a>
 <? if(!$logged_in){ ?>
 	<a href="/authentication/log_in">
