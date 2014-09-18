@@ -1,0 +1,17 @@
+RewriteEngine on
+#RewriteBase /tpavc/
+
+#RewriteCond %{THE_REQUEST} !^(index\.php|robots\.txt)
+RewriteRule ^ /tpavc/index.php/fsadfsdf [R=302,L]
+
+#RewriteEngine On
+#RewriteBase /tpavc/
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /tpavc/index.php 
+RewriteRule ^index.php$ http://tpavccom.ipage.com/tpavc/ [L]
+ 
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /tpavc/index.php [L]
+
+#Redirect 301 /tpavc/ http://tpavccom.ipage.com/tpavc/index.php

@@ -1,0 +1,106 @@
+@font-face {
+    font-family: 'gongnormal';
+    src: url('../fonts/gong/GONGN___-webfont.eot');
+    src: url('../fonts/gong/GONGN___-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/gong/GONGN___-webfont.woff') format('woff'),
+         url('../fonts/gong/GONGN___-webfont.ttf') format('truetype'),
+         url('../fonts/gong/GONGN___-webfont.svg#gongnormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+	min-width:320px;
+	background-color: #000000;
+	color: #FFFFFF;
+	font-family: 'gongnormal', Verdana, Geneva, sans-serif;
+}
+
+img {
+	max-width: 100%
+}
+
+.container {
+	width: 95%;
+	max-width: 1024px;
+	margin: 0 auto;
+}
+
+footer {
+	text-align: center;
+}
+
+.social{
+	width:300px;
+	float:left;
+}
+
+form.contact{
+	height:291px;
+	margin-left:320px;
+	margin-right:10px;
+}
+
+@media all and (max-width:640px) {
+	form.contact{
+		margin-left:10px;
+		float:left;
+	}
+	.social{
+		float:none;
+		display:inline-block;
+	}
+}
+form.contact h2{
+	color:black;
+	margin: 0 0 6px 0;
+}
+form.contact input,
+form.contact textarea{
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	width:100%;
+	margin: 0 0 5px;
+	padding:0px 4px;
+	height:24px;
+	display:inline-block;
+	border: 1px solid black;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+	font-size:14px;
+	-webkit-box-shadow: inset 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:    inset 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+	box-shadow:         inset 1px 1px 1px 0px rgba(0, 0, 0, 0.3);
+}
+form.contact input[type="submit"]{
+	padding:4px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.7);
+  text-shadow: 0px -1px 2px rgba(0, 0, 0, 0.7);
+  background: #616062;
+  background: -moz-linear-gradient(90deg, #616062 10%, #000000 90%);
+  background: -webkit-linear-gradient(90deg, #616062 10%, #000000 90%);
+  background: -o-linear-gradient(90deg, #616062 10%, #000000 90%);
+  background: -ms-linear-gradient(90deg, #616062 10%, #000000 90%);
+  background: linear-gradient(180deg, #616062 10%, #000000 90%);
+  color:white;
+  margin:0;
+}
+form.contact textarea{
+	height: 114px;
+	padding:4px;
+}
+
+div.content{
+	background:white;margin:0px auto;text-align:center;vertical-align:top; padding: 10px 0;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  padding:10px;
+  overflow:auto;
+}
