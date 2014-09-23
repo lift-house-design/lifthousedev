@@ -54,10 +54,7 @@
 	*/?>
 
 	<!-- assets -->
-    <?= min_css($min_css) ?>
-    <?= css($css) ?>
-    <?= less_css($less_css) ?>
-    <?= min_js($min_js) ?>
+  <?= css($css) ?>
 	<?= js($js) ?>
 
 	<!-- Thanks, Bill -->

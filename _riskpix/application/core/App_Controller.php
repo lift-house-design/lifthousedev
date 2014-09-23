@@ -31,11 +31,15 @@ class App_Controller extends CI_Controller
     protected $less_css = array();
 
     protected $asides = array(
-        'analytics' => 'analytics'
+        'topbar'=>'topbar',
+        'notifications'=>'notifications',
+        'footer'=>'footer',
+        'bottombar'=>'bottombar',
+        'seo'=>'seo',
+        'analytics' => 'analytics',
     );
 
-    protected $helpers = array(
-    );
+    protected $helpers = array('config');
 
     /**
      * The current request's view. Automatically guessed
@@ -85,8 +89,6 @@ class App_Controller extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $db_config = $this->config->item('database');
-        $this->load->database($db_config);
 
         $this->_load_helpers();
         $this->_load_models();
@@ -154,12 +156,20 @@ class App_Controller extends CI_Controller
     
     protected function _load_data()
     {
+        // Trying to purge this LESS crap out of the project
+        if(!empty($this->less_css))
+        {
+            echo 'LESS CSS FILES FOUND..';
+            var_dump($this->less_css);
+            exit;
+        }
+
         // Set the basic data
-        $this->data['css'] = $this->css;
-        $this->data['min_css'] = $this->min_css;
-        $this->data['less_css'] = $this->less_css;
-        $this->data['js'] = $this->js;
-        $this->data['min_js'] = $this->min_js;
+        $this->data['css'] = array_merge($this->css,$this->min_css);
+
+
+        $this->data['js'] = array_merge($this->js,$this->min_js);
+
         $this->data['site_name'] = $this->config->item('site_name');
         $this->data['meta'] = $this->config->item('meta');
         $this->data['copyright'] = $this->config->item('copyright');

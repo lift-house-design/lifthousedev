@@ -1,44 +1,13 @@
 <?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-/* Set Environment */
-// detect from host (local.domain.com => local, domain.lifthousedesign.com => development, other => production)
-if(strpos($_SERVER['HTTP_HOST'],'local') === 0)
-	$config['environment'] = 'local';
-elseif(strpos($_SERVER['HTTP_HOST'],'.lifthousedesign.com') !== false)
-	$config['environment'] = 'development';
-else
-	$config['environment'] = 'production';
-
-$config['error_email'] = 'jdooling.locizzle@gmail.com';
 /* Database Configuration */
-$config['databases']=array(
-	'default' => array(
-		'hostname' => 'localhost',
-		'dbdriver' => 'mysql',
-		'db_debug' => true,
-	),
-	'local'=>array(
-		'username'=>'root',
-		'password'=>'root',
-		'database'=>'riskpix',
-	),
-	'development'=>array(
-		'username'=>'riskpix',
-		'password'=>'riskpix',
-		'database'=>'riskpix',
-	),
-	'production'=>array(
-		'username'=>'riskpix',
-		'password'=>'riskpix',
-		'database'=>'riskpix',
-		'db_debug' => false,
-	)
+$config['database']=array(
+	'hostname' => 'localhost',
+	'database' => 'riskpix',
+	'dbdriver' => 'mysql',
+	'db_debug' => false,
 );
-$config['database'] = array_merge(
-	$config['databases']['default'],
-	$config['databases'][$config['environment']]
-);
-//var_dump($config['database']);
+// Useless
 /* URL / Path Configuration */
 $config['domain'] = $_SERVER['HTTP_HOST'];
 $config['scheme'] = 'http';
@@ -65,7 +34,7 @@ $config['seo_content'] = '';
 $config['ga_code']=FALSE;
 
 /* E-mail Notifications */
-$config['contact_email'] = 'jdooling.locizzle@gmail.com';
+$config['contact_email'] = 'nickniebaum@gmail.com';
 $config['email_notifications']=array(
 	'sender_email'=>'no-reply@riskpix.com',
 	'sender_name'=>'RISKPIX',
@@ -74,6 +43,8 @@ $config['email_notifications']=array(
 		'mailtype'=>'html',
 	),
 );
+
+$config['error_email'] = 'nickniebaum@gmail.com';
 
 /* SMS Notifications */
 $config['sms_notifications']=array(

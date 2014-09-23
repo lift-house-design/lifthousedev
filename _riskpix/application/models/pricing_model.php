@@ -10,10 +10,7 @@ class Pricing_model extends App_Model
     parent::__construct();
   }
 
-  public function get_pricing() {
-    /*$query = $this->db->query('SELECT p_ID,p_volume,p_price FROM pricing WHERE p_expiration_date > NOW()');
-    $rows = $query->row_array();
-    return $rows;*/
+  public function get_pricing_options() {
     $pricing = array();
     $rows = $this->db->query('SELECT p_ID,p_volume,p_price,p_roll_over,p_roll_months FROM pricing WHERE p_expiration_date > NOW() ORDER BY p_volume,p_roll_over')->result_array();
 
