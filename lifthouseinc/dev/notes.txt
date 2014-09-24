@@ -1,0 +1,10 @@
+javascript bot check source
+---------------------------
+var i = $('#form-check').attr('name');
+if(i)
+{
+	var k = 0;
+	for(j=0;j<i.length;j++)
+		k+=i.charCodeAt(j)*j;
+	$('#form-check').val(k);
+}

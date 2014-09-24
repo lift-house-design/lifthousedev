@@ -1,0 +1,338 @@
+@import 'helpers';
+@import 'fonts';
+
+@c0: #000000;
+@c1: #222222;
+@c2: #444444;
+@c3: #666666;
+@c4: #888888;
+@c5: #aaaaaa;
+@c6: #cccccc;
+@c7: #eeeeee;
+@c8: #ffffff;
+
+/* placeholder */
+@phcolor: @c2;
+@phfont: 'LatoItalic';
+
+/* This is to make phones happy. If we are doing a mobile version, uncomment the viewport tag in the layouts and remive this. */
+html,body{
+	min-width:960px;
+}
+
+*{
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	font-family:'LatoLite';
+	position: relative;
+}
+a{
+	text-decoration: none;
+	color:@c0;
+	font-family: 'Lato';
+}
+a:hover{
+	text-decoration: underline;
+}
+b{
+	font-family:'LatoBold';
+	letter-spacing:1px;
+}
+html{
+	height: 100%;
+	position:relative;
+}
+
+div{
+	overflow:auto;
+}
+
+h1{
+	margin-top:0;
+	margin-bottom:8px;
+}
+hr{
+	border-left:0;
+	border-top:0;
+	margin:8px 0 4px;
+}
+td{
+	background-clip: padding-box;
+}
+p{
+	margin:4px 0;
+}
+
+body{
+	color: @c2;
+	min-height: 100%;
+	position:relative;
+}
+
+/* blog */
+.blog-wrap{
+	.pad(10px);
+	border: 2px solid @c2;
+}
+.blog-content{
+	.pad(10px);
+	background:@c7;
+	margin-top:10px;
+}
+
+/* sitemap */
+.sitemap{
+	h1,h2,h3,h4,h5,h6{
+		margin:4px 0;
+		.iblock;
+	}
+}
+
+/* contact form */
+#contact-form{
+	* *{
+		position:static;
+	}
+	h1{
+		margin: 0px 0;
+	}
+	h2{
+		color:@c1;
+		margin: 4px 0;
+		font-size:24px;
+	}
+	input[type='text'],
+	select,
+	textarea,
+	.customSelect{
+		.iblock;
+		.w100pc;
+		max-width:100%;
+		background: @c8;
+		.round(0);
+		.pad(10px 10px);
+		.align-left;
+		height:30px;
+	}
+	input[type='submit']{
+		.iblock;
+		.w100pc;
+		color: @c8;
+		background:@c0;
+		font-family:'LatoBoldItalic';
+		max-width:100%;
+		.round(0);
+		.f18;
+		letter-spacing: 1px;
+		border: 2px solid @c4;
+		height:40px;
+	}
+	input[type='submit']:hover{
+		color:@c4;
+	}
+	textarea{
+		height:108px;
+		margin-bottom:4px;
+		padding-top:4px;
+	}
+	textarea.tall{
+		height:206px;
+	}
+	.customSelect { 
+		.pad(4px 10px);
+	}
+}
+
+/* Important elements (main wrappers, footers, headers) */
+div#content-wrap{
+	.pad(20px);
+}
+@topbar-height: 60px; 
+#topbar{
+	height:@topbar-height;
+	.mar(0);
+	.pad(0);
+	.visible;
+	background: @c7;
+	line-height:0px !important;
+	letter-spacing: -3px;
+	a{
+		letter-spacing: 0px;
+		.iblock;
+		height:0px;
+		line-height:0px;
+		.pad(@topbar-height/2 2%);
+		.mar(0px);
+		img{
+			height:100%;
+		}
+		float:right;
+	}
+	a:hover{
+		background: @c6;
+		text-decoration:none;
+	}
+	a:first-child{
+		.pad(0);
+		height:@topbar-height;
+		float:left;
+	}
+}
+#footer{
+	background: @c2;
+	color: @c7;
+	position:absolute;
+	.pad(0);
+	bottom:0px;
+	width:100%;
+	font-size:16px;
+}
+#seo{
+	height:1px; 
+	position:absolute;
+	top:-1px;
+	overflow:hidden;
+}
+.notifications,
+.errors{
+	max-width:800px;
+	.mar(10px auto);
+	background: @c7;
+	color:@c2;
+	.pad(20px);
+	.align-center;
+	.round(5);
+}
+.errors{
+	background: @c4;
+	color: @c8;
+}
+
+/* Forms and Fields */
+input,
+button,
+select,
+textarea,
+.customSelect {
+	background: @c7;
+	.round(4px);
+	border:1px solid @c0;
+	height:30px;
+	width:90%;
+	max-width:300px;
+	margin-bottom:4px;
+	text-align:center;
+	color: black;
+	font-family: 'Lato';
+	.f16;
+}
+textarea{
+	height:100px;
+}
+input[type="submit"],
+input[type="button"],
+button{
+	background: @c7;
+	color: @c0;
+	border: 1px solid @c0;
+}
+input[type="submit"]:hover,
+input[type="button"]:hover,
+button:hover{
+	background: @c0;
+	color:@c8;
+	border-color:@c0;
+}
+/* custom selects... */
+.customSelect { 
+	.pad(4px 10px);
+}
+.customSelect.customSelectHover {
+}
+.customSelect.customSelectOpen {
+}
+.customSelect.customSelectFocus {
+}
+.customSelect.customSelectDisabledOption {
+}
+.customSelect.customSelectDisabled {
+}
+.customSelectInner {
+	color: @phcolor;
+	font-family: @phfont;
+	.f16;
+}	
+.customSelectInner.good {
+	color: black;
+	font-family: 'Lato';
+}
+.select-wrap{
+	 margin-bottom:30px;
+	 .visible;
+	 position:relative !important;
+	 height:4px;
+}	
+.select-arrow{
+	position:absolute !important;
+	top:3px;
+	right:10px;
+	color: @c1;
+	pointer-events:none;
+}
+select{
+}
+
+.overlay-bg{
+	position:fixed;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	background: @c0;
+	opacity:0.5;
+	display:none;
+}
+.overlay-loading{
+	position:fixed;
+	top:50%;
+	left:50%;
+	margin-top:-16px;
+	margin-left:-16px;
+	display:none;
+}
+
+.center-wrap{
+	max-width:720px;
+	margin:0 auto;
+	min-width:320px;
+}
+
+/* fixing our plugins */
+.chosen-single{
+	height:30px !important;
+	.block !important;
+	font-size:18px;
+	span{
+		line-height:26px !important;
+	}
+}
+.chosen-container{
+	.visible;
+	.align-left;
+	a span{
+		line-height:30px;
+		.align-center;
+	}
+}
+.chosen-search{
+	.visible;
+	input{
+		max-width:1000000px;
+	}
+}
+.projekktor *{
+	.visible;
+}
+.mce-close{
+	background:@c8 !important;
+}
