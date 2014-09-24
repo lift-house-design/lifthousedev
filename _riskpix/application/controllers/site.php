@@ -15,6 +15,11 @@ class Site extends App_Controller
 		$this->load->library('session');
 	}
 
+	public function debug()
+	{
+		var_dump($_SERVER['HTTP_HOST'],ENVIRONMENT);
+	}
+
 	/* Ad hoc pages */
 
 	public function index()
