@@ -1,10 +1,16 @@
-@import 'includes/vars.scss';
-@import 'includes/mixins.scss';
-@import 'includes/animations.scss';
+@import "dependencies/application";
 
-@import 'includes/helpers.scss';
-@import 'includes/base.scss';
-@import 'includes/modules.scss';
+/**
+ * MODULES
+ */
 
-@import 'includes/layout.scss';
-@import 'includes/pages.scss';
+// Forms and form fields
+ @import "modules/forms";
+
+ .form-field {
+    @extend %form-field;
+
+    > .field {
+        @extend %field-container;
+    }
+ }

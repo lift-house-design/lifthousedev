@@ -67,7 +67,7 @@
   	<?= empty($yield_progress) ? '' : $yield_progress ?>
   	<?= empty($yield_banner) ? '' : $yield_banner ?>
   	<?= empty($yield_home_text) ? '' : $yield_home_text ?>
-  	<div class="center-wrap spacer20">
+  	<div class="center-wrap">
   		<?= $yield_notifications ?>
   		<?= $yield ?>
   	</div>
